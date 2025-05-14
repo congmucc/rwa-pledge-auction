@@ -1,14 +1,30 @@
 # Real Estate Tokenization Project
 
-This project implements a real estate tokenization system using ERC-1155 tokens with cross-chain capabilities and Chainlink Functions integration.
+This project implements a real estate tokenization system using ERC-1155 tokens with cross-chain capabilities, staking, and auction functionality.
 
 ## Features
 
-- ERC-1155 token standard implementation
+- ERC-1155 token standard implementation for real estate tokenization
 - Cross-chain functionality using Chainlink CCIP
 - Real-time price updates using Chainlink Functions
+- Real Estate Staking with rewards in USDC
+- English Auction mechanism for tokenized real estate
 - Automated price updates and management
 - Issuer contract for token management
+
+## Project Structure
+
+The project is organized as follows:
+
+```
+src/
+├── contracts/           # Core application contracts
+│   ├── RealEstateStaking.sol      # Staking mechanism for tokenized real estate
+│   └── RealEstateAuction.sol      # English auction for tokenized real estate
+├── RealEstateToken.sol  # Main ERC-1155 implementation for real estate tokens
+├── issuer.sol           # Token issuance management
+└── utils/               # Utility contracts and helpers
+```
 
 ## Prerequisites
 
@@ -68,6 +84,12 @@ make build
 # 运行测试
 make test
 
+# 运行质押相关测试
+make test-staking
+
+# 运行拍卖相关测试
+make test-auction
+
 # 清理构建文件
 make clean
 
@@ -76,6 +98,12 @@ make coverage
 
 # 部署到 Sepolia 测试网
 make deploy
+
+# 部署质押和拍卖合约
+make deploy-staking-auction
+
+# 使用已部署的 RealEstateToken 部署质押和拍卖合约
+make deploy-existing
 ```
 
 ## Deployment Steps
@@ -101,38 +129,34 @@ make test
 make deploy
 ```
 
-The deployment script will deploy both RealEstateToken and Issuer contracts with the following configuration:
+The deployment script will deploy the following contracts:
 
-RealEstateToken.sol:
-- TOKEN_URI: "" (empty string)
-- CCIP_ROUTER: 0xF694E193200268f9a4868e4Aa017A0118C9a8177
-- LINK_TOKEN: 0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846
-- CHAIN_SELECTOR: 16015286601757825753 (Sepolia)
-- FUNCTIONS_ROUTER: 0xA9d587a00A31A52Ed70D6026794a8FC5E2F5dCb0
-
-Issuer.sol:
-- realEstateToken: [Deployed RealEstateToken address]
-- functionsRouterAddress: 0xA9d587a00A31A52Ed70D6026794a8FC5E2F5dCb0
+1. **RealEstateToken**: The main ERC-1155 token for representing fractional real estate ownership
+2. **Issuer**: Manages the token issuance process
+3. **RealEstateStaking**: Provides staking functionality with USDC rewards
+4. **RealEstateAuction**: Implements an English auction mechanism for tokenized real estate
 
 ## Contract Verification
 
 The deployment script automatically verifies the contracts on Etherscan. You can view the verified contracts on:
 - [Etherscan Sepolia](https://sepolia.etherscan.io/)
 
-## Testing
+## Core Functionality
 
-The project includes comprehensive tests for all major functionality:
-- Token deployment
-- Cross-chain operations
-- Price updates
-- Access control
-- Automation integration
-- Issuer contract functionality
+### RealEstateToken
+- ERC-1155 implementation for fractionalized real estate ownership
+- Cross-chain transfer capabilities via Chainlink CCIP
+- URI management for token metadata
 
-Run the tests with:
-```bash
-make test
-```
+### RealEstateStaking
+- Stake real estate tokens and earn USDC rewards
+- Configurable yield rates
+- Price feed integration via Chainlink oracles
+
+### RealEstateAuction
+- English auction mechanism for tokenized real estate
+- Automatic time-based auction ending
+- Support for bidding, withdrawal, and settlement
 
 ## Security Considerations
 

@@ -13,7 +13,7 @@ contract DeployScript is Script {
         string memory uri = vm.envString("TOKEN_URI");
         address ccipRouter = vm.envAddress("CCIP_ROUTER");
         address linkToken = vm.envAddress("LINK_TOKEN");
-        uint64 chainSelector = vm.envUint("CHAIN_SELECTOR");
+        uint64 chainSelector = uint64(vm.envUint("CHAIN_SELECTOR"));
         address functionsRouter = vm.envAddress("FUNCTIONS_ROUTER");
 
         RealEstateToken realEstateToken = new RealEstateToken(

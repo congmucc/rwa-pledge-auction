@@ -6,7 +6,7 @@ import {IERC1155Receiver, IERC165} from "@openzeppelin/contracts/token/ERC1155/I
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {SafeCast} from "@openzeppelin/contracts/utils/math/SafeCast.sol";
 
-contract English is IERC1155Receiver, ReentrancyGuard {
+contract RealEstateAuction is IERC1155Receiver, ReentrancyGuard {
     error Auction_OnlySellerCanCall();
     error Auction_AuctionAlreadyStarted();
     error OnlyRealEstateTokenSupported();
