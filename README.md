@@ -166,10 +166,8 @@ The deployment script automatically verifies the contracts on Etherscan. You can
 - Monitor contract events and logs after deployment
 - Ensure Chainlink Functions subscription is properly funded
 
-## License
 
-MIT License
 
 ## Support
 
-For support, please open an issue in the repository or contact the development team.
+For support, please open an issue in the repository or contact the developer.
